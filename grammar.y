@@ -120,6 +120,10 @@ a_expr : a_expr T_ADD a_term
         {
           // TASK: Modify this semantic action to support both DTYPE_INT and DTYPE_FLOAT.
           // For DTYPE_FLOAT you should generate an OP_FADD instruction.
+          
+          res = make_temp (symtab, $1->datatype);
+          if ($3->datatype == DTYPE_FLOAT) itab_instruction_add (itab, OP_FADD, res->addr, $1->addr, $3->addr);
+          else itab_instruction_add (itab, OP_ADD, res->addr, $1->addr, $3->addr);
         }
         $$ = res;
         #ifdef _SMP_DEBUG_
