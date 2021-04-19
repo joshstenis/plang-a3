@@ -129,6 +129,11 @@ int run (itab_t * itab, char * stack, char * static_mem)
           int * src = (int*)(stack + op->addr3);
           int * dst = (int*)(stack + op->addr1);
           *dst = *src;
+        } if (op->addr2 == DTYPE_INT)
+        {
+          float * src = (float*)(stack + op->addr3);
+          float * dst = (float*)(stack + op->addr1);
+          *dst = *src;
         }
         // TASK: Complete case for DTYPE_FLOAT
         break;
